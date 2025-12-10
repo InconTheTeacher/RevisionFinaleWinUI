@@ -31,6 +31,8 @@ namespace HalloWinUI.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Adresse = table.Column<string>(type: "TEXT", nullable: false),
+                    CodePostal = table.Column<string>(type: "TEXT", nullable: false),
+                    Ville = table.Column<string>(type: "TEXT", nullable: false),
                     EstSignalee = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

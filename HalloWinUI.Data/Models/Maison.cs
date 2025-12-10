@@ -8,6 +8,8 @@
         public string Ville { get; set; } = string.Empty;
         public bool EstSignalee { get; set; }
 
+        public List<Visite> Visites { get; set; } = [];
+        public List<Bonbon> Bonbons { get; set; } = [];
 
     }
 }

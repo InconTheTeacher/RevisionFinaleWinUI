@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HalloWinUI.Data.Migrations
 {
     [DbContext(typeof(HalloWinUIDbContext))]
-    [Migration("20251210033605_MigrationInitiale")]
+    [Migration("20251210205530_MigrationInitiale")]
     partial class MigrationInitiale
     {
         /// <inheritdoc />
@@ -71,8 +71,16 @@ namespace HalloWinUI.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CodePostal")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("EstSignalee")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Ville")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

@@ -54,6 +54,9 @@ namespace HalloWinUI.Data
                 }
             };
 
+            _context.Maisons.AddRange(maisons);
+            _context.SaveChanges();
+
             List<Enfant> enfants = new List<Enfant>
             {
                 new Enfant{ Nom = "Sophie" },
@@ -75,6 +78,30 @@ namespace HalloWinUI.Data
                 new Visite { Enfant = enfants[2], Maison = maisons[2], DateVisite = DateTime.Now.AddMinutes(-30) },
                 new Visite { Enfant = enfants[2], Maison = maisons[3], DateVisite = DateTime.Now.AddMinutes(-15) }
             };
+
+            _context.Enfants.AddRange(enfants);
+            _context.SaveChanges();
+
+            List<Bonbon> bonbons = new List<Bonbon>()
+            {
+                new Bonbon {Nom = "Chocolait", Quantite = 20, Categorie = CategorieBonbon.Chocolat, Maison = maisons[0]},
+                new Bonbon {Nom = "Chippeur", Quantite = 250, Categorie = CategorieBonbon.Chips, Maison = maisons[0]},
+                new Bonbon {Nom = "Sucretur", Quantite = 120, Categorie = CategorieBonbon.Sucreries, Maison = maisons[0]},
+                new Bonbon {Nom = "Gomme à effacer", Quantite = 122, Categorie = CategorieBonbon.Gommes, Maison = maisons[0]},
+                new Bonbon {Nom = "Citrouille en pain d'épices", Quantite = 63, Categorie = CategorieBonbon.Autre, Maison = maisons[0]},
+                
+                new Bonbon {Nom = "Cheap-O's", Quantite = 576, Categorie = CategorieBonbon.BonbonsDurs, Maison = maisons[1]},
+                new Bonbon {Nom = "Pomme mini", Quantite = 93, Categorie = CategorieBonbon.Autre, Maison = maisons[1]},
+                new Bonbon {Nom = "Sucralosier", Quantite = 147, Categorie = CategorieBonbon.Sucreries, Maison = maisons[1]},
+                
+                new Bonbon {Nom = "Chip à la craie", Quantite = 210, Categorie = CategorieBonbon.Chips, Maison = maisons[2]},
+                new Bonbon {Nom = "Gomme Balloune Premium", Quantite = 72, Categorie = CategorieBonbon.Gommes, Maison = maisons[2]},
+                new Bonbon {Nom = "Fructorie", Quantite = 250, Categorie = CategorieBonbon.Sucreries, Maison = maisons[2]}
+
+            };
+
+            _context.Bonbons.AddRange(bonbons);
+            _context.SaveChanges();
         }
     }
 }

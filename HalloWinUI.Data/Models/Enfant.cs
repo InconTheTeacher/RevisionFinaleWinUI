@@ -10,6 +10,6 @@ namespace HalloWinUI.Data.Models
     {
         public int Id { get; set; }
         public string Nom { get; set; } = string.Empty;
-
+        public List<Visite> Visites { get; set; } = [];
     }
 }
