@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="HalloWinUI.Views.MaisonsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="using:HalloWinUI.ViewModels"
+    Background="#FFF3DF"
+    mc:Ignorable="d">
+
+    <Grid x:Name="root" Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            Grid.Row="0"
+            Padding="16"
+            CornerRadius="8"
+            Spacing="12">
+            <TextBlock
+                FontSize="18"
+                FontWeight="Bold"
+                Text="Ajouter une maison" />
+
+            <TextBox
+                Header="Adresse"
+                PlaceholderText="Ex: 123 Rue des Fantômes"
+                Text="{x:Bind ViewModel.Adresse, Mode=TwoWay}" />
+
+            <TextBox
+                Header="Code postal"
+                MaxLength="7"
+                PlaceholderText="Ex: H2X 1Y7"
+                Text="{x:Bind ViewModel.CodePostal, Mode=TwoWay}" />
+
+            <TextBox
+                Header="Ville"
+                PlaceholderText="Ex: Montréal"
+                Text="{x:Bind ViewModel.Ville, Mode=TwoWay}" />
+
+            <CheckBox Content="Maison signalée (dangereuse)" IsChecked="{x:Bind ViewModel.EstSignalee, Mode=TwoWay}" />
+
+            <Button Click="btnAjouterMaison_Click">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon Glyph="&#xE710;" />
+                    <TextBlock Text="Ajouter" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <ComboBox
+            Grid.Row="1"
+            Width="200"
+            Margin="0,20,0,10"
+            HorizontalAlignment="Left"
+            Header="Filtrer par statut"
+            ItemsSource="{x:Bind ViewModel.FiltresDisponibles}"
+            SelectedItem="{x:Bind ViewModel.FiltreStatut, Mode=TwoWay}" />
+
+        <GridView
+            Grid.Row="2"
+            Margin="0,20,0,0"
+            ItemsSource="{x:Bind ViewModel.Maisons, Mode=OneWay}"
+            SelectedItem="{x:Bind ViewModel.MaisonSelectionnee, Mode=TwoWay}"
+            SelectionMode="Single">
+
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="Margin" Value="12,12,12,12" />
+                    <Setter Property="BorderThickness" Value="5" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                </Style>
+            </GridView.ItemContainerStyle>
+
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="viewmodels:MaisonViewModel">
+                    <Border
+                        Width="350"
+                        Height="200"
+                        Background="GhostWhite"
+                        BorderBrush="#FFFFCC99"
+                        BorderThickness="2">
+                        <Grid Padding="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel
+                                Padding="15"
+                                VerticalAlignment="Center"
+                                Spacing="5">
+                                <TextBlock
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Text="{x:Bind Adresse, Mode=OneWay}"
+                                    TextWrapping="Wrap" />
+                                <TextBlock FontSize="13" Text="{x:Bind Ville, Mode=OneWay}" />
+                                <TextBlock FontSize="13" Text="{x:Bind CodePostal, Mode=OneWay}" />
+
+                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                    <FontIcon
+                                        FontSize="14"
+                                        Foreground="Orange"
+                                        Glyph="&#xE7C1;" />
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="Orange"
+                                        Text="
+                                        ons" />
+                                </StackPanel>
+
+                                <TextBlock
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="{x:Bind StatutCouleur, Mode=OneWay}"
+                                    Text="{x:Bind StatutTexte, Mode=OneWay}" />
+                                <CheckBox Content="Signaler" IsChecked="{x:Bind EstSignalee, Mode=TwoWay}" />
+                            </StackPanel>
+
+                        </Grid>
+
+
+                    </Border>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+        </GridView>
+
+        <Button
+            Grid.Row="3"
+            HorizontalAlignment="Left"
+            Background="DarkOrange"
+            Click="BtnSupprimer_Click">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+                <FontIcon FontSize="14" Glyph="&#xE74D;" />
+                <TextBlock VerticalAlignment="Center" Text="Supprimer" />
+            </StackPanel>
+        </Button>
+
+    </Grid>
+
+</Page>
