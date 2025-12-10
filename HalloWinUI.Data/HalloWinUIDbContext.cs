@@ -13,6 +13,7 @@ namespace HalloWinUI.Data
         public DbSet<Models.Enfant> Enfants { get; set; }
         public DbSet<Models.Maison> Maisons { get; set; }
         public DbSet<Models.Visite> Visites { get; set; }
+        public DbSet<Models.Bonbon> Bonbons { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,6 +42,21 @@ namespace HalloWinUI.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Visite>()
+                .HasOne(v => v.Enfant)
+                .WithMany(e => e.Visites)
+                .HasForeignKey(v => v.EnfantId);
+            modelBuilder.Entity<Visite>()
+                .HasOne(v => v.Maison)
+                .WithMany(m => m.Visites)
+                .HasForeignKey(v => v.MaisonId);
+
+            modelBuilder.Entity<Bonbon>()
+                .HasOne(b => b.Maison)
+                .WithMany(m => m.Bonbons)
+                .HasForeignKey(b => b.MaisonId);
+
 
         }
 

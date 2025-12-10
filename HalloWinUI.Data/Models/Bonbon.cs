@@ -13,5 +13,9 @@ namespace HalloWinUI.Data.Models
         public string Nom { get; set; } = string.Empty;
         public int Quantite { get; set; }
         public CategorieBonbon Categorie { get; set; }
+        
+        public int MaisonId { get; set; }
+        public Maison Maison { get; set; }
+
     }
 }
